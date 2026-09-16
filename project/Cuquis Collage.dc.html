@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  body { margin:0; background:#EFE2D5; font-family:'Quicksand',system-ui,sans-serif; color:#4A3818; -webkit-font-smoothing:antialiased; }
+  * { box-sizing:border-box; }
+  a { color:#EE5029; text-decoration:none; }
+  a:hover { color:#4A3818; }
+  @keyframes cq-marquee { from { transform:translateX(0); } to { transform:translateX(-50%); } }
+  @keyframes cq-float { 0%,100% { transform:translateY(0) rotate(var(--r,0deg)); } 50% { transform:translateY(-18px) rotate(calc(var(--r,0deg) + 6deg)); } }
+  @keyframes cq-spin { from { transform:rotate(0deg); } to { transform:rotate(360deg); } }
+  @keyframes cq-pop { 0%,100% { transform:scale(1) rotate(-8deg); } 50% { transform:scale(1.08) rotate(-4deg); } }
+</style>
+</helmet>
+
+<div style="max-width:100%; overflow-x:hidden;">
+
+  <header style="position:sticky; top:0; z-index:40; display:flex; align-items:center; gap:24px; padding:14px clamp(16px,4vw,48px); background:rgba(239,226,213,0.88); backdrop-filter:blur(10px); border-bottom:2px solid #4A3818;">
+    <a href="#top" style="font-family:'Bagel Fat One',cursive; font-size:26px; color:#EE5029; letter-spacing:0.02em;">CUQUIS</a>
+    <nav style="display:flex; gap:22px; margin-left:auto; flex-wrap:wrap; font-weight:600; font-size:15px;">
+      <a href="#sabores" data-i18n="nav_flavors" style="color:#4A3818;">Sabores</a>
+      <a href="#cajas" data-i18n="nav_boxes" style="color:#4A3818;">Cajas</a>
+      <a href="#nosotras" data-i18n="nav_about" style="color:#4A3818;">Nosotras</a>
+      <a href="#pedir" data-i18n="nav_order" style="color:#4A3818;">Pedir</a>
+    </nav>
+    <button onClick="{{ toggleLang }}" style="border:2px solid #4A3818; background:transparent; color:#4A3818; font-family:'Quicksand',sans-serif; font-weight:700; font-size:13px; padding:7px 12px; border-radius:999px; cursor:pointer;" style-hover="background:#4A3818; color:#EFE2D5;">{{ langLabel }}</button>
+    <a href="https://wa.me/5491160299299" target="_blank" rel="noopener" style="background:#EE5029; color:#EFE2D5; font-weight:700; font-size:14px; padding:11px 20px; border-radius:999px; white-space:nowrap;" style-hover="background:#4A3818; color:#EFE2D5;"><span data-i18n="cta_wa">Pedir por WhatsApp</span></a>
+  </header>
+
+  <section id="top" style="position:relative; padding:clamp(48px,9vw,110px) clamp(16px,4vw,48px) 0; text-align:center; overflow:hidden;">
+    <div style="position:absolute; inset:0; pointer-events:none;">
+      <img src="img/frambuesa.png" alt="" data-drift="0.10" style="position:absolute; left:2%; top:14%; width:clamp(90px,13vw,190px); --r:-14deg; animation:cq-float 7s ease-in-out infinite;" />
+      <img src="img/pistacho.png" alt="" data-drift="-0.14" style="position:absolute; right:3%; top:8%; width:clamp(80px,11vw,165px); --r:12deg; animation:cq-float 8.5s ease-in-out infinite;" />
+      <img src="img/limon.png" alt="" data-drift="0.18" style="position:absolute; left:8%; bottom:6%; width:clamp(70px,9vw,135px); --r:20deg; animation:cq-float 6.2s ease-in-out infinite;" />
+      <img src="img/triple.png" alt="" data-drift="-0.09" style="position:absolute; right:7%; bottom:4%; width:clamp(85px,11vw,160px); --r:-9deg; animation:cq-float 9s ease-in-out infinite;" />
+    </div>
+    <p data-i18n="hero_kicker" style="position:relative; margin:0 0 18px; font-weight:700; font-size:13px; letter-spacing:0.26em; text-transform:uppercase; color:#6F4E13;">Cookies artesanales · CABA &amp; Nordelta</p>
+    <h1 style="position:relative; margin:0; font-family:'Bagel Fat One',cursive; font-weight:400; font-size:clamp(76px,18vw,280px); line-height:0.82; color:#EE5029; letter-spacing:-0.01em;">CUQUIS</h1>
+    <p data-i18n="hero_sub" style="position:relative; margin:26px auto 0; max-width:620px; font-size:clamp(17px,2vw,22px); line-height:1.5; font-weight:500; color:#4A3818; text-wrap:pretty;">Hacemos cuquis artesanales, una por una, con recetas caseras y mucho amor. Horneamos como en casa, con paciencia y dedicación.</p>
+    <div style="position:relative; display:flex; gap:14px; justify-content:center; flex-wrap:wrap; margin-top:34px; padding-bottom:clamp(56px,8vw,96px);">
+      <a href="https://wa.me/5491160299299" target="_blank" rel="noopener" style="background:#EE5029; color:#EFE2D5; font-weight:700; font-size:17px; padding:16px 30px; border-radius:999px; border:2px solid #EE5029;" style-hover="background:#4A3818; border-color:#4A3818;"><span data-i18n="cta_order">Hacé tu pedido</span></a>
+      <a href="#sabores" style="background:transparent; color:#4A3818; font-weight:700; font-size:17px; padding:16px 30px; border-radius:999px; border:2px solid #4A3818;" style-hover="background:#4A3818; color:#EFE2D5;"><span data-i18n="cta_menu">Ver los sabores</span></a>
+    </div>
+  </section>
+
+  <div style="background:#EE5029; border-top:2px solid #4A3818; border-bottom:2px solid #4A3818; overflow:hidden; padding:13px 0;">
+    <div style="display:flex; width:max-content; animation:cq-marquee 26s linear infinite; font-family:'Bagel Fat One',cursive; font-size:clamp(18px,2.4vw,30px); color:#EFE2D5; white-space:nowrap;">
+      <span data-i18n="mq" style="padding-right:40px;">UNA POR UNA ✷ RECETAS CASERAS ✷ SIN PROCESOS INDUSTRIALES ✷ RECIÉN HORNEADAS ✷ UNA POR UNA ✷ RECETAS CASERAS ✷ SIN PROCESOS INDUSTRIALES ✷ RECIÉN HORNEADAS ✷</span>
+      <span data-i18n="mq" aria-hidden="true" style="padding-right:40px;">UNA POR UNA ✷ RECETAS CASERAS ✷ SIN PROCESOS INDUSTRIALES ✷ RECIÉN HORNEADAS ✷ UNA POR UNA ✷ RECETAS CASERAS ✷ SIN PROCESOS INDUSTRIALES ✷ RECIÉN HORNEADAS ✷</span>
+    </div>
+  </div>
+
+  <section style="padding:clamp(56px,8vw,110px) clamp(16px,4vw,48px);">
+    <div data-reveal="" style="max-width:1180px; margin:0 auto; display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:clamp(28px,5vw,64px); align-items:center;">
+      <div style="position:relative; display:flex; justify-content:center;">
+        <div style="position:absolute; width:min(88%,420px); aspect-ratio:1; border-radius:50%; background:#CABCAE;"></div>
+        <img src="img/pistacho.png" alt="Cuqui de pistacho" data-slowspin="" style="position:relative; width:min(86%,410px);" />
+        <div style="position:absolute; top:2%; right:4%; background:#EE5029; color:#EFE2D5; font-family:'Bagel Fat One',cursive; font-size:clamp(13px,1.6vw,18px); padding:14px 16px; border-radius:50%; aspect-ratio:1; display:grid; place-items:center; text-align:center; line-height:1.05; animation:cq-pop 3.4s ease-in-out infinite;"><span data-i18n="som_badge">SABOR<br />DEL MES</span></div>
+      </div>
+      <div>
+        <p data-i18n="som_kicker" style="margin:0 0 10px; font-weight:700; font-size:13px; letter-spacing:0.24em; text-transform:uppercase; color:#6F4E13;">Edición limitada</p>
+        <h2 style="margin:0; font-family:'Bagel Fat One',cursive; font-weight:400; font-size:clamp(44px,7vw,86px); line-height:0.9; color:#4A3818;">{{ flavorOfMonth }}</h2>
+        <p data-i18n="som_body" style="margin:20px 0 0; font-size:clamp(16px,1.8vw,20px); line-height:1.6; font-weight:500; max-width:44ch; text-wrap:pretty;">Masa de manteca con pistacho molido, trozos de chocolate blanco y un toque de sal. La horneamos en tandas chicas y se agota rápido.</p>
+        <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:26px;">
+          <a href="https://wa.me/5491160299299" target="_blank" rel="noopener" style="background:#4A3818; color:#EFE2D5; font-weight:700; padding:14px 26px; border-radius:999px;" style-hover="background:#EE5029;"><span data-i18n="som_cta">Quiero una</span></a>
+          <a href="https://instagram.com/__cuquis" target="_blank" rel="noopener" style="border:2px solid #4A3818; color:#4A3818; font-weight:700; padding:12px 24px; border-radius:999px;" style-hover="background:#4A3818; color:#EFE2D5;">@__cuquis</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="sabores" style="padding:clamp(40px,6vw,80px) clamp(16px,4vw,48px) clamp(56px,8vw,110px); background:#EFE2D5;">
+    <div style="max-width:1180px; margin:0 auto;">
+      <div data-reveal="" style="display:flex; align-items:flex-end; gap:20px; flex-wrap:wrap; margin-bottom:clamp(28px,4vw,52px);">
+        <h2 data-i18n="flavors_title" style="margin:0; font-family:'Bagel Fat One',cursive; font-weight:400; font-size:clamp(40px,6vw,76px); line-height:0.9; color:#EE5029;">Los sabores</h2>
+        <p data-i18n="flavors_sub" style="margin:0 0 8px; font-weight:600; font-size:16px; color:#6F4E13; max-width:34ch;">Por unidad, caja de 6 o caja de 12. Y si querés inventar uno, lo hacemos.</p>
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:clamp(14px,2vw,24px);">
+
+        <div data-reveal="" data-tilt="" style="background:#fff; border:2px solid #4A3818; border-radius:26px; padding:18px; text-align:center; transition:transform 0.35s cubic-bezier(.2,.8,.2,1), box-shadow 0.35s;">
+          <img src="img/clasica.png" alt="Cuqui clásica" style="width:100%; display:block;" />
+          <h3 data-i18n="f1" style="margin:8px 0 4px; font-family:'Bagel Fat One',cursive; font-weight:400; font-size:26px; color:#4A3818;">Común</h3>
+          <p data-i18n="f1d" style="margin:0; font-size:14px; font-weight:600; color:#6F4E13;">Chocolate semiamargo y sal marina</p>
+        </div>
+
+        <div data-reveal="" data-tilt="" style="background:#fff; border:2px solid #4A3818; border-radius:26px; padding:18px; text-align:center; transition:transform 0.35s cubic-bezier(.2,.8,.2,1), box-shadow 0.35s;">
+          <img src="img/limon.png" alt="Cuqui de limón" style="width:100%; display:block;" />
+          <h3 data-i18n="f2" style="margin:8px 0 4px; font-family:'Bagel Fat One',cursive; font-weight:400; font-size:26px; color:#4A3818;">Limón</h3>
+          <p data-i18n="f2d" style="margin:0; font-size:14px; font-weight:600; color:#6F4E13;">Glaseado, ralladura y chocolate blanco</p>
+        </div>
+
+        <div data-reveal="" data-tilt="" style="background:#fff; border:2px solid #4A3818; border-radius:26px; padding:18px; text-align:center; transition:transform 0.35s cubic-bezier(.2,.8,.2,1), box-shadow 0.35s;">
+          <img src="img/frambuesa.png" alt="Cuqui de frambuesa" style="width:100%; display:block;" />
+          <h3 data-i18n="f3" style="margin:8px 0 4px; font-family:'Bagel Fat One',cursive; font-weight:400; font-size:26px; color:#4A3818;">Frambuesa</h3>
+          <p data-i18n="f3d" style="margin:0; font-size:14px; font-weight:600; color:#6F4E13;">Cacao, frambuesa y chocolate blanco</p>
+        </div>
+
+        <div data-reveal="" data-tilt="" style="background:#fff; border:2px solid #4A3818; border-radius:26px; padding:18px; text-align:center; transition:transform 0.35s cubic-bezier(.2,.8,.2,1), box-shadow 0.35s;">
+          <img src="img/pistacho.png" alt="Cuqui de pistacho" style="width:100%; display:block;" />
+          <h3 data-i18n="f4" style="margin:8px 0 4px; font-family:'Bagel Fat One',cursive; font-weight:400; font-size:26px; color:#4A3818;">Pistacho</h3>
+          <p data-i18n="f4d" style="margin:0; font-size:14px; font-weight:600; color:#6F4E13;">Pistacho molido y chocolate blanco</p>
+        </div>
+
+        <div data-reveal="" data-tilt="" style="background:#fff; border:2px solid #4A3818; border-radius:26px; padding:18px; text-align:center; transition:transform 0.35s cubic-bezier(.2,.8,.2,1), box-shadow 0.35s;">
+          <img src="img/triple.png" alt="Cuqui triple chocolate" style="width:100%; display:block;" />
+          <h3 data-i18n="f5" style="margin:8px 0 4px; font-family:'Bagel Fat One',cursive; font-weight:400; font-size:26px; color:#4A3818;">Triple chocolate</h3>
+          <p data-i18n="f5d" style="margin:0; font-size:14px; font-weight:600; color:#6F4E13;">Negro, con leche y blanco</p>
+        </div>
+
+        <div data-reveal="" data-tilt="" style="background:#fff; border:2px solid #4A3818; border-radius:26px; padding:18px; text-align:center; transition:transform 0.35s cubic-bezier(.2,.8,.2,1), box-shadow 0.35s;">
+          <img src="img/redvelvet.png" alt="Cuqui red velvet" style="width:100%; display:block;" />
+          <h3 data-i18n="f6" style="margin:8px 0 4px; font-family:'Bagel Fat One',cursive; font-weight:400; font-size:26px; color:#4A3818;">Red velvet</h3>
+          <p data-i18n="f6d" style="margin:0; font-size:14px; font-weight:600; color:#6F4E13;">Cacao rojo y chocolate blanco</p>
+        </div>
+
+        <div data-reveal="" data-tilt="" style="background:#CABCAE; border:2px solid #4A3818; border-radius:26px; padding:18px; display:flex; flex-direction:column; transition:transform 0.35s cubic-bezier(.2,.8,.2,1);">
+          <div style="flex:1; min-height:120px; display:grid; place-items:center; border:2px dashed #6F4E13; border-radius:18px; margin-bottom:12px;">
+            <span style="font-family:ui-monospace,monospace; font-size:11px; color:#6F4E13; text-align:center; padding:8px;">foto cuqui kinder</span>
+          </div>
+          <h3 data-i18n="f7" style="margin:0 0 4px; font-family:'Bagel Fat One',cursive; font-weight:400; font-size:26px; color:#4A3818; text-align:center;">Kinder</h3>
+          <p data-i18n="f7d" style="margin:0; font-size:14px; font-weight:600; color:#6F4E13; text-align:center;">Relleno cremoso de avellana</p>
+        </div>
+
+        <div data-reveal="" data-tilt="" style="background:#CABCAE; border:2px solid #4A3818; border-radius:26px; padding:18px; display:flex; flex-direction:column; transition:transform 0.35s cubic-bezier(.2,.8,.2,1);">
+          <div style="flex:1; min-height:120px; display:grid; place-items:center; border:2px dashed #6F4E13; border-radius:18px; margin-bottom:12px;">
+            <span style="font-family:ui-monospace,monospace; font-size:11px; color:#6F4E13; text-align:center; padding:8px;">foto cuqui caramelo</span>
+          </div>
+          <h3 data-i18n="f8" style="margin:0 0 4px; font-family:'Bagel Fat One',cursive; font-weight:400; font-size:26px; color:#4A3818; text-align:center;">Caramelo</h3>
+          <p data-i18n="f8d" style="margin:0; font-size:14px; font-weight:600; color:#6F4E13; text-align:center;">Caramelo salado por dentro</p>
+        </div>
+
+        <a href="https://wa.me/5491160299299" target="_blank" rel="noopener" data-reveal="" style="background:#EE5029; border:2px solid #4A3818; border-radius:26px; padding:26px; display:flex; flex-direction:column; justify-content:center; text-align:center; color:#EFE2D5;" style-hover="background:#4A3818;">
+          <span data-i18n="f9" style="font-family:'Bagel Fat One',cursive; font-size:30px; line-height:1; color:#EFE2D5;">Inventá<br />el tuyo</span>
+          <span data-i18n="f9d" style="margin-top:12px; font-size:14px; font-weight:600; color:#EFE2D5;">Contanos qué se te ocurre y lo probamos</span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="cajas" style="padding:clamp(56px,8vw,110px) clamp(16px,4vw,48px); background:#EFE2D5; color:#4A3818;">
+    <div style="max-width:1180px; margin:0 auto;">
+      <h2 data-i18n="boxes_title" data-reveal="" style="margin:0 0 clamp(26px,4vw,48px); font-family:'Bagel Fat One',cursive; font-weight:400; font-size:clamp(40px,6vw,76px); line-height:0.9; color:#EE5029;">Cajas y combos</h2>
+      <div data-reveal="" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:2px; background:#4A3818; border:2px solid #4A3818; border-radius:26px; overflow:hidden;">
+        <div style="background:#EFE2D5; padding:clamp(22px,3vw,34px);">
+          <span style="font-family:'Bagel Fat One',cursive; font-size:44px; color:#EE5029;">01</span>
+          <h3 data-i18n="b1" style="margin:8px 0 8px; font-size:22px; font-weight:700;">Por unidad</h3>
+          <p data-i18n="b1d" style="margin:0; font-size:15px; font-weight:500; line-height:1.55; color:#6F4E13;">Elegís el sabor que quieras, sin mínimo.</p>
+        </div>
+        <div style="background:#EFE2D5; padding:clamp(22px,3vw,34px);">
+          <span style="font-family:'Bagel Fat One',cursive; font-size:44px; color:#EE5029;">06</span>
+          <h3 data-i18n="b2" style="margin:8px 0 8px; font-size:22px; font-weight:700;">Caja de 6</h3>
+          <p data-i18n="b2d" style="margin:0; font-size:15px; font-weight:500; line-height:1.55; color:#6F4E13;">Todas distintas o todas iguales. La más pedida.</p>
+        </div>
+        <div style="background:#EFE2D5; padding:clamp(22px,3vw,34px);">
+          <span style="font-family:'Bagel Fat One',cursive; font-size:44px; color:#EE5029;">12</span>
+          <h3 data-i18n="b3" style="margin:8px 0 8px; font-size:22px; font-weight:700;">Caja de 12</h3>
+          <p data-i18n="b3d" style="margin:0; font-size:15px; font-weight:500; line-height:1.55; color:#6F4E13;">Para compartir con quien quieras.</p>
+        </div>
+        <div style="background:#4A3818; color:#EFE2D5; padding:clamp(22px,3vw,34px);">
+          <span style="font-family:'Bagel Fat One',cursive; font-size:44px; color:#EE5029;">+</span>
+          <h3 data-i18n="b4" style="margin:8px 0 8px; font-size:22px; font-weight:700;">Catering</h3>
+          <p data-i18n="b4d" style="margin:0 0 12px; font-size:15px; font-weight:500; line-height:1.55; color:#CABCAE;">Eventos y pedidos grandes, armados a medida.</p>
+          <a href="https://wa.me/5491160299299" target="_blank" rel="noopener" style="font-weight:700; font-size:15px; color:#EE5029; border-bottom:2px solid #EE5029;" style-hover="color:#EFE2D5; border-color:#EFE2D5;"><span data-i18n="b4cta">Pedir presupuesto</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="nosotras" style="padding:clamp(56px,8vw,110px) clamp(16px,4vw,48px);">
+    <div data-reveal="" style="max-width:1180px; margin:0 auto; display:grid; grid-template-columns:repeat(auto-fit,minmax(290px,1fr)); gap:clamp(28px,5vw,64px); align-items:center;">
+      <div>
+        <h2 data-i18n="about_title" style="margin:0; font-family:'Bagel Fat One',cursive; font-weight:400; font-size:clamp(40px,6vw,76px); line-height:0.9; color:#EE5029;">Somos Cuquis</h2>
+        <p data-i18n="about_1" style="margin:22px 0 0; font-size:clamp(16px,1.8vw,20px); line-height:1.6; font-weight:500; max-width:52ch; text-wrap:pretty;">No usamos procesos industriales en ninguna etapa: horneamos como en casa, con paciencia y dedicación, porque creemos que eso se nota en el sabor.</p>
+        <p data-i18n="about_2" style="margin:16px 0 0; font-size:clamp(16px,1.8vw,20px); line-height:1.6; font-weight:500; max-width:52ch; text-wrap:pretty;">Somos una marca joven y cercana, hecha para compartir con quien quieras. Y en cada Cuqui buscamos lo mismo: que sea un momento real para disfrutar :)</p>
+        <p style="margin:24px 0 0; font-weight:700; font-size:15px; letter-spacing:0.16em; text-transform:uppercase; color:#6F4E13;"><span data-i18n="about_by">Por</span> Miru Manguel</p>
+      </div>
+      <div style="position:relative; aspect-ratio:4/5; border:2px solid #4A3818; border-radius:28px; background:repeating-linear-gradient(45deg,#CABCAE 0 12px,#EFE2D5 12px 24px); display:grid; place-items:center;">
+        <span style="font-family:ui-monospace,monospace; font-size:12px; color:#4A3818; background:#EFE2D5; padding:8px 12px; border:2px solid #4A3818; border-radius:8px;">foto de Miru / la cocina</span>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:0 0 clamp(56px,8vw,110px); overflow:hidden;">
+    <h2 data-i18n="rev_title" style="margin:0 0 clamp(24px,3vw,40px); padding:0 clamp(16px,4vw,48px); font-family:'Bagel Fat One',cursive; font-weight:400; font-size:clamp(34px,5vw,62px); line-height:0.95; color:#4A3818;">Lo que dicen</h2>
+    <div style="display:flex; width:max-content; gap:20px; animation:cq-marquee 42s linear infinite;">
+      <div style="display:flex; gap:20px; padding-right:20px;">
+        <div style="width:min(78vw,340px); background:#fff; border:2px solid #4A3818; border-radius:24px; padding:24px; transform:rotate(-1.5deg);">
+          <p data-i18n="r1" style="margin:0 0 14px; font-size:17px; line-height:1.55; font-weight:600;">“Pedí la caja de 12 para un cumpleaños y no quedó ni una. La de pistacho es otra cosa.”</p>
+          <span style="font-size:13px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:#EE5029;">Cami · Belgrano</span>
+        </div>
+        <div style="width:min(78vw,340px); background:#EE5029; color:#EFE2D5; border:2px solid #4A3818; border-radius:24px; padding:24px; transform:rotate(1.5deg);">
+          <p data-i18n="r2" style="margin:0 0 14px; font-size:17px; line-height:1.55; font-weight:600;">“Se siente casera de verdad, no como las de cadena. Ya es costumbre los viernes.”</p>
+          <span style="font-size:13px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:#EFE2D5;">Nacho · Nordelta</span>
+        </div>
+        <div style="width:min(78vw,340px); background:#fff; border:2px solid #4A3818; border-radius:24px; padding:24px; transform:rotate(-2deg);">
+          <p data-i18n="r3" style="margin:0 0 14px; font-size:17px; line-height:1.55; font-weight:600;">“Les pedí un sabor inventado para el casamiento y lo clavaron.”</p>
+          <span style="font-size:13px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:#EE5029;">Flor · CABA</span>
+        </div>
+        <div style="width:min(78vw,340px); background:#CABCAE; border:2px solid #4A3818; border-radius:24px; padding:24px; transform:rotate(1deg);">
+          <p data-i18n="r4" style="margin:0 0 14px; font-size:17px; line-height:1.55; font-weight:600;">“La de limón no la vi en ningún otro lado. Mi favorita lejos.”</p>
+          <span style="font-size:13px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:#6F4E13;">Juan · Belgrano</span>
+        </div>
+      </div>
+      <div aria-hidden="true" style="display:flex; gap:20px; padding-right:20px;">
+        <div style="width:min(78vw,340px); background:#fff; border:2px solid #4A3818; border-radius:24px; padding:24px; transform:rotate(-1.5deg);">
+          <p style="margin:0 0 14px; font-size:17px; line-height:1.55; font-weight:600;">“Pedí la caja de 12 para un cumpleaños y no quedó ni una. La de pistacho es otra cosa.”</p>
+          <span style="font-size:13px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:#EE5029;">Cami · Belgrano</span>
+        </div>
+        <div style="width:min(78vw,340px); background:#EE5029; color:#EFE2D5; border:2px solid #4A3818; border-radius:24px; padding:24px; transform:rotate(1.5deg);">
+          <p style="margin:0 0 14px; font-size:17px; line-height:1.55; font-weight:600;">“Se siente casera de verdad, no como las de cadena. Ya es costumbre los viernes.”</p>
+          <span style="font-size:13px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:#EFE2D5;">Nacho · Nordelta</span>
+        </div>
+        <div style="width:min(78vw,340px); background:#fff; border:2px solid #4A3818; border-radius:24px; padding:24px; transform:rotate(-2deg);">
+          <p style="margin:0 0 14px; font-size:17px; line-height:1.55; font-weight:600;">“Les pedí un sabor inventado para el casamiento y lo clavaron.”</p>
+          <span style="font-size:13px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:#EE5029;">Flor · CABA</span>
+        </div>
+        <div style="width:min(78vw,340px); background:#CABCAE; border:2px solid #4A3818; border-radius:24px; padding:24px; transform:rotate(1deg);">
+          <p style="margin:0 0 14px; font-size:17px; line-height:1.55; font-weight:600;">“La de limón no la vi en ningún otro lado. Mi favorita lejos.”</p>
+          <span style="font-size:13px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:#6F4E13;">Juan · Belgrano</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="pedir" style="position:relative; padding:clamp(56px,8vw,120px) clamp(16px,4vw,48px); background:#EE5029; border-top:2px solid #4A3818; text-align:center; overflow:hidden;">
+    <img src="img/clasica.png" alt="" style="position:absolute; left:-4%; bottom:-10%; width:clamp(120px,18vw,260px); --r:16deg; animation:cq-float 8s ease-in-out infinite; pointer-events:none;" />
+    <img src="img/redvelvet.png" alt="" style="position:absolute; right:-3%; top:-8%; width:clamp(110px,16vw,230px); --r:-12deg; animation:cq-float 7s ease-in-out infinite; pointer-events:none;" />
+    <h2 data-i18n="cta_title" style="position:relative; margin:0 auto; max-width:16ch; font-family:'Bagel Fat One',cursive; font-weight:400; font-size:clamp(40px,8vw,104px); line-height:0.9; color:#EFE2D5;">¿Armamos tu caja?</h2>
+    <div style="position:relative; display:flex; gap:14px; justify-content:center; flex-wrap:wrap; margin-top:32px;">
+      <a href="https://wa.me/5491160299299" target="_blank" rel="noopener" style="background:#4A3818; color:#EFE2D5; font-weight:700; font-size:17px; padding:16px 30px; border-radius:999px; border:2px solid #4A3818;" style-hover="background:#EFE2D5; color:#4A3818;">WhatsApp</a>
+      <a href="https://instagram.com/__cuquis" target="_blank" rel="noopener" style="background:#4A3818; color:#EFE2D5; font-weight:700; font-size:17px; padding:16px 30px; border-radius:999px; border:2px solid #4A3818;" style-hover="background:#EFE2D5; color:#4A3818;">Instagram DM</a>
+      <a href="#" style="background:#4A3818; color:#EFE2D5; font-weight:700; font-size:17px; padding:16px 30px; border-radius:999px; border:2px solid #4A3818;" style-hover="background:#EFE2D5; color:#4A3818;"><span data-i18n="cta_shop">Comprar online</span></a>
+    </div>
+  </section>
+
+  <footer style="background:#4A3818; color:#EFE2D5; padding:clamp(40px,6vw,72px) clamp(16px,4vw,48px) 28px;">
+    <div style="max-width:1180px; margin:0 auto; display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:32px; align-items:start;">
+      <div>
+        <p style="margin:0; font-family:'Bagel Fat One',cursive; font-size:clamp(40px,7vw,72px); line-height:0.85; color:#EE5029;">CUQUIS</p>
+        <p data-i18n="foot_tag" style="margin:12px 0 0; font-size:15px; font-weight:600; color:#CABCAE;">Cookies artesanales, una por una.</p>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:8px;">
+        <span data-i18n="foot_where" style="font-size:13px; font-weight:700; letter-spacing:0.16em; text-transform:uppercase; color:#CABCAE;">Dónde</span>
+        <span style="font-size:16px; font-weight:600;">CABA · Belgrano</span>
+        <span style="font-size:16px; font-weight:600;">Nordelta</span>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:8px;">
+        <span data-i18n="foot_contact" style="font-size:13px; font-weight:700; letter-spacing:0.16em; text-transform:uppercase; color:#CABCAE;">Contacto</span>
+        <a href="https://wa.me/5491160299299" target="_blank" rel="noopener" style="font-size:16px; font-weight:600; color:#EFE2D5;" style-hover="color:#EE5029;">+54 9 11 6029-9299</a>
+        <a href="https://instagram.com/__cuquis" target="_blank" rel="noopener" style="font-size:16px; font-weight:600; color:#EFE2D5;" style-hover="color:#EE5029;">@__cuquis</a>
+      </div>
+    </div>
+    <p style="max-width:1180px; margin:36px auto 0; padding-top:18px; border-top:1px solid rgba(239,226,213,0.25); font-size:13px; font-weight:500; color:#CABCAE;">© 2026 Cuquis</p>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;flavorOfMonth&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Pistacho&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Contenido&quot;},&quot;motion&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;on&quot;,&quot;off&quot;],&quot;default&quot;:&quot;on&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Movimiento&quot;}}">
+const EN = {
+  nav_flavors:"Flavors", nav_boxes:"Boxes", nav_about:"About", nav_order:"Order",
+  cta_wa:"Order on WhatsApp", cta_order:"Place your order", cta_menu:"See the flavors",
+  hero_kicker:"Handmade cookies · CABA & Nordelta",
+  hero_sub:"We bake our cuquis by hand, one at a time, with homemade recipes and a lot of love. Just like at home: patience and care.",
+  mq:"ONE BY ONE ✷ HOMEMADE RECIPES ✷ NOTHING INDUSTRIAL ✷ FRESHLY BAKED ✷ ONE BY ONE ✷ HOMEMADE RECIPES ✷ NOTHING INDUSTRIAL ✷ FRESHLY BAKED ✷",
+  som_badge:"FLAVOR<br />OF THE MONTH", som_kicker:"Limited edition",
+  som_body:"Butter dough with ground pistachio, white chocolate chunks and a pinch of salt. Baked in small batches and it goes fast.",
+  som_cta:"I want one",
+  flavors_title:"The flavors", flavors_sub:"By the unit, box of 6 or box of 12. And if you want to invent one, we'll make it.",
+  f1:"Classic", f1d:"Dark chocolate and sea salt",
+  f2:"Lemon", f2d:"Glaze, zest and white chocolate",
+  f3:"Raspberry", f3d:"Cocoa, raspberry and white chocolate",
+  f4:"Pistachio", f4d:"Ground pistachio and white chocolate",
+  f5:"Triple chocolate", f5d:"Dark, milk and white",
+  f6:"Red velvet", f6d:"Red cocoa and white chocolate",
+  f7:"Kinder", f7d:"Creamy hazelnut filling",
+  f8:"Caramel", f8d:"Salted caramel inside",
+  f9:"Invent<br />your own", f9d:"Tell us your idea and we'll bake it",
+  boxes_title:"Boxes & combos",
+  b1:"Single", b1d:"Pick any flavor, no minimum.",
+  b2:"Box of 6", b2d:"Six cuquis, all different or all the same. The most ordered one.",
+  b3:"Box of 12", b3d:"To share with whoever you want.",
+  b4:"Catering", b4d:"Events and large orders, built to measure.", b4cta:"Ask for a quote",
+  about_title:"We are Cuquis",
+  about_1:"Nothing industrial at any stage: we bake like at home, with patience and dedication, because we believe you can taste it.",
+  about_2:"We're a young, close-knit brand made for sharing with whoever you want. And in every Cuqui we look for the same thing: a real moment to enjoy :)",
+  about_by:"By",
+  rev_title:"What people say",
+  r1:"“I ordered the box of 12 for a birthday and not one was left. The pistachio one is something else.”",
+  r2:"“It really tastes homemade, not like the chains. Fridays are a habit now.”",
+  r3:"“I asked them for an invented flavor for my wedding and they nailed it.”",
+  r4:"“I haven't seen the lemon one anywhere else. My favorite by far.”",
+  cta_title:"Shall we build your box?", cta_shop:"Shop online",
+  foot_tag:"Handmade cookies, one at a time.", foot_where:"Where", foot_contact:"Contact"
+};
+
+class Component extends DCLogic {
+  state = { lang: "es" };
+
+  renderVals() {
+    return {
+      langLabel: this.state.lang === "es" ? "EN" : "ES",
+      flavorOfMonth: this.props.flavorOfMonth ?? "Pistacho",
+      toggleLang: () => {
+        const next = this.state.lang === "es" ? "en" : "es";
+        this.setState({ lang: next }, () => this.applyLang(next));
+      }
+    };
+  }
+
+  applyLang(lang) {
+    const root = this.el || document;
+    root.querySelectorAll("[data-i18n]").forEach(node => {
+      if (!node.dataset.esHtml) node.dataset.esHtml = node.innerHTML;
+      const en = EN[node.dataset.i18n];
+      node.innerHTML = lang === "en" && en ? en : node.dataset.esHtml;
+    });
+  }
+
+  componentDidMount() {
+    const root = document;
+    this.el = root;
+    if (this.props.motion === "off") return;
+
+    const reveal = root.querySelectorAll("[data-reveal]");
+    reveal.forEach(n => {
+      n.style.opacity = "0";
+      n.style.transform = "translateY(26px)";
+      n.style.transition = "opacity .7s cubic-bezier(.2,.8,.2,1), transform .7s cubic-bezier(.2,.8,.2,1)";
+    });
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.style.opacity = "1";
+          e.target.style.transform = "none";
+          io.unobserve(e.target);
+        }
+      });
+    }, { rootMargin: "0px 0px -8% 0px" });
+    reveal.forEach(n => io.observe(n));
+
+    root.querySelectorAll("[data-tilt]").forEach((card, i) => {
+      const dir = i % 2 ? 1 : -1;
+      card.addEventListener("mouseenter", () => {
+        card.style.transform = `translateY(-10px) rotate(${dir * 2}deg)`;
+        card.style.boxShadow = "10px 12px 0 #4A3818";
+      });
+      card.addEventListener("mouseleave", () => {
+        card.style.transform = "none";
+        card.style.boxShadow = "none";
+      });
+    });
+
+    const drift = [...root.querySelectorAll("[data-drift]")];
+    const spin = [...root.querySelectorAll("[data-slowspin]")];
+    let raf = null;
+    const onScroll = () => {
+      if (raf) return;
+      raf = requestAnimationFrame(() => {
+        const y = window.scrollY || 0;
+        drift.forEach(n => { n.style.translate = `0 ${y * parseFloat(n.dataset.drift)}px`; });
+        spin.forEach(n => { n.style.rotate = `${y * 0.05}deg`; });
+        raf = null;
+      });
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+  }
+}
+</script>
+</body>
+</html>
